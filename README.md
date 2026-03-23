@@ -57,20 +57,17 @@ The analysis was conducted using the [Sleep Data from FitBit Tracker](https://ww
   * **$H_1$ (Alternative):** $\mu < 20$ (Stress-impacted)
   * **Test Type:** Left-tailed test.
 
-**3. Formulas Used:**
 
-  * **Test Statistic ($z$):** $z = \frac{\bar{x} - \mu}{s / \sqrt{n}}$
-  * **p-value (Normal):** `NORM.S.DIST(z, TRUE)` or `1 - Z.TEST(array, 20)`
+**3. Results Table:**
 
-**4. Results Table:**
-| Metric | Calculated Value |
-| :--- | :--- |
-| **Sample Mean ($\bar{x}$)** | 19.39 |
-| **Standard Deviation ($s$)** | 3.91 |
-| **Sample Size ($n$)** | 179 |
-| **Test Statistic ($z$)** | -2.08 |
-| **p-value (Normal)** | **0.0187** |
-| **p-value (t-dist)** | **0.0194** |
+| Metric | Formula | Calculated Value |
+| :--- | :--- | :--- |
+| **Sample Mean ($\bar{x}$)** | `=AVERAGE(REM_Column)` | 19.39 |
+| **Standard Deviation ($s$)** | `=STDEV.S(REM_Column)` | 3.91 |
+| **Sample Size ($n$)** | `=COUNT(REM_Column)` | 179 |
+| **Test Statistic ($z$)** | $z = \frac{\bar{x} - \mu}{s / \sqrt{n}}$ | -2.08 |
+| **p-value (Normal)** | `NORM.S.DIST(z, TRUE)` | **0.0187** |
+| **p-value (t-dist)** | `T.DIST(z, n-1, TRUE)` | **0.0194** |
 
 -----
 
@@ -90,19 +87,16 @@ The analysis was conducted using the [Sleep Data from FitBit Tracker](https://ww
   * **$H_1$ (Alternative):** $p > 0.75$
   * **Test Type:** Right-tailed test.
 
-**3. Formulas Used:**
 
-  * **Sample Proportion:** $\hat{p} = \frac{\text{count}}{n}$
-  * **Test Statistic ($z$):** $z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$
+**3. Results Table:**
 
-**4. Results Table:**
-| Metric | Calculated Value |
-| :--- | :--- |
-| **Count (Nights $\ge$ 7hrs)** | 140 |
-| **Total Sample ($n$)** | 179 |
-| **Sample Proportion ($\hat{p}$)** | 0.782 |
-| **Test Statistic** | 0.99 |
-| **p-value (Normal)** | **0.1605** |
+| Metric | Formula | Calculated Value |
+| :--- | :--- | :--- |
+| **Success Count ($k$)** | `=COUNTIF(Hours_Col, ">=7")` | 140 |
+| **Total Sample ($n$)** | `=COUNT(Hours_Col)` | 179 |
+| **Sample Proportion ($\hat{p}$)** | $\hat{p} = \frac{k}{n}$ | 0.782 |
+| **Test Statistic ($z$)** | $z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$ | 0.99 |
+| **p-value (Normal)** | `1 - NORM.S.DIST(z, TRUE)` | **0.1605** |
 
 -----
 
@@ -133,3 +127,4 @@ The user has a **Quality vs. Quantity** problem. While they are successfully spe
   * **Portfolio References:**
       * [Confidence Intervals for Means](https://github.com/ayushi-gajendra/confidence-intervals-for-means)
       * [Confidence Intervals for Proportions](https://github.com/ayushi-gajendra/confidence-intervals-for-proportions)
+
